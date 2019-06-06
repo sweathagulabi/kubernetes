@@ -1,0 +1,23 @@
+apiVersion : extensions/v1beta1
+kind : deployment
+metadata :
+  name : nginx-dep
+spec :
+  replicas : 3
+  minReadySeconds : 30
+  strategy :
+    type : RollingUpdate
+    rollingUpdate :
+      maxUnavialble : 1
+      macSurge : 1
+  template : 
+    metadata :
+      labels :
+        app : nginx
+    spec :
+      containers:
+      - name : ngin
+        image : nginx
+        ports :
+        - containerPort : 80
+        
